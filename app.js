@@ -155,7 +155,13 @@ app.put('/updateOrder',async(req,res)=>{
     let output = await updateOrder(collection,condition,data);
     res.send(output)
 })
-
+//deleteorders
+app.delete('/deleteOrder',async(req,res) => {
+    let collection = 'orders';
+    let condition = {"_id":new Mongo.ObjectId(req.body._id)}
+    let output = await deleteOrder(collection,condition)
+    res.send(output)
+})
 
 app.listen(port,(err) =>{
     dbConnect();

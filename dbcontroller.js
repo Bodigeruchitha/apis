@@ -1,6 +1,6 @@
 let  mongo=require("mongodb");
 let {MongoClient} =require("mongodb");
-let mongoUrl ="mongodb://127.0.0.1:27017" 
+let mongoUrl ="mongodb+srv://ruchi-bodige_04:iuuN5AV95AxssxE9@cluster0.yjn88a3.mongodb.net/?retryWrites=true&w=majority" 
 let client = new MongoClient(mongoUrl)
 
 async function dbConnect(){
@@ -44,6 +44,16 @@ async function updateOrder(colName,condition,data){
     }
     return output
 }
+async function deleteOrder(colName,condition){
+    let output;
+    try{
+        output = await db.collection(colName).deleteOne(condition)
+    } catch(err){
+        output = {"response":"Error in delete data"}
+    }
+    return output
+}
+
 
 module.exports ={
    dbConnect,
